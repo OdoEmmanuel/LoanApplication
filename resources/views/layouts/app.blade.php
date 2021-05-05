@@ -42,7 +42,7 @@
 		<script src="assets/js/scripts.bundle.js"></script>
 		<!--end::Global Theme Bundle-->
 		<!--begin::Page Scripts(used by this page)-->
-		<script src="assets/js/pages/custom/login/login-3.js"></script>
+		{{-- <script src="assets/js/pages/custom/login/login-3.js"></script> --}}
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->
