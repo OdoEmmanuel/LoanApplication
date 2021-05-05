@@ -101,44 +101,75 @@
                     <!--begin::Signin-->
                     <div class="login-form login-form-signup">
                         <!--begin::Form-->
-                        <form class="form" >
+                        <form  method="POST" action="{{ route('register') }}" class="form" >
+                            {{ csrf_field() }}
                             <!--begin: Wizard Step 1-->
                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                 <!--begin::Title-->
                                 <div class="pb-10 pb-lg-15">
                                     <h3 class="font-weight-bolder text-dark display5">Create Account</h3>
                                     <div class="text-muted font-weight-bold font-size-h4">Already have an Account ?
-                                    <a href="custom/pages/login/login-3/signin.html" class="text-primary font-weight-bolder">Sign In</a></div>
+                                    <a href="{{ route('login') }}" class="text-primary font-weight-bolder">Sign In</a></div>
                                 </div>
                                 <!--begin::Title-->
                                 <!--begin::Form Group-->
                                 <div class="form-group">
                                     <label class="font-size-h6 font-weight-bolder text-dark">First Name</label>
-                                    <input type="text" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="fname" placeholder="First Name" value="" required/>
+                                    <input type="text" class="form-control{{ $errors->has('fname') ? ' is-invalid' : '' }} h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="fname" placeholder="First Name" value="{{ old('fname', null) }}" required/>
+                                    @if($errors->has('name'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('fname') }}
+                                    </div>
+                                     @endif
                                 </div>
                                 <!--end::Form Group-->
                                 <!--begin::Form Group-->
                                 <div class="form-group">
                                     <label class="font-size-h6 font-weight-bolder text-dark">Last Name</label>
-                                    <input type="text" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="lname" placeholder="Last Name" value="" required/>
+                                    <input type="text" class="form-control{{ $errors->has('lname') ? ' is-invalid' : '' }} h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="lname" placeholder="Last Name" value="" required/>
+                                    @if($errors->has('lname'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('lname') }}
+                                    </div>
+                                     @endif
                                 </div>
                                 <!--end::Form Group-->
                                 <!--begin::Form Group-->
                                 <div class="form-group">
                                     <label class="font-size-h6 font-weight-bolder text-dark">Phone</label>
-                                    <input type="tel" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="phone" placeholder="phone" value="+2348167929922" required/>
+                                    <input type="tel" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="phone" placeholder="phone" value="+2348167929922" required/>
+                                    @if($errors->has('phone'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('phone') }}
+                                    </div>
+                                     @endif
                                 </div>
                                 <!--end::Form Group-->
                                 <!--begin::Form Group-->
                                 <div class="form-group">
                                     <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
-                                    <input type="email" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="email" placeholder="Email" value="" required/>
+                                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="email" placeholder="Email" value="{{ old('email', null) }}" required/>
+                                    @if($errors->has('email'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('email') }}
+                                    </div>
+                                     @endif
                                 </div>
                                 <!--end::Form Group-->
                                 <!--begin::Form Group-->
                                 <div class="form-group">
                                     <label class="font-size-h6 font-weight-bolder text-dark">Password</label>
-                                    <input type="password" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="password" placeholder="Password" value="" required/>
+                                    <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="password" placeholder="Password" value="" required/>
+                                    @if($errors->has('password'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('password') }}
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="font-size-h6 font-weight-bolder text-dark">Password Confirmation</label>
+                                    <input type="password" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="password_confirmation" placeholder="Password Confirmation" value="" required/>
                                 </div>
                                 <!--end::Form Group-->
                             </div>

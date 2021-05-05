@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Login-->
@@ -38,10 +36,16 @@
                 <!--end::Top-->
                 <!--begin::Wrapper-->
                 <div class="d-flex flex-row-fluid flex-center">
+                    @if(session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
                     <!--begin::Forgot-->
                     <div class="login-form">
                         <!--begin::Form-->
-                        <form class="form" id="kt_login_forgot_form" action="">
+                        <form method="POST" action="{{ route('password.email') }}" class="form" id="kt_login_forgot_form" action="">
+                            @csrf
                             <!--begin::Title-->
                             <div class="pb-5 pb-lg-15">
                                 <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Forgotten Password ?</h3>
@@ -50,13 +54,18 @@
                             <!--end::Title-->
                             <!--begin::Form group-->
                             <div class="form-group">
-                                <input class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="email" placeholder="Email" name="email" autocomplete="off" />
+                                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="email" placeholder="Email" name="email" autocomplete="off" />
+                                @if($errors->has('email'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('email') }}
+                                </div>
+                            @endif
                             </div>
                             <!--end::Form group-->
                             <!--begin::Form group-->
                             <div class="form-group d-flex flex-wrap">
                                 <button type="submit" id="kt_login_forgot_form_submit_button" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Submit</button>
-                                <a href="custom/pages/login/login-3/signin.html" id="kt_login_forgot_cancel" class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">Cancel</a>
+                                <a href="{{ route('login') }}" id="kt_login_forgot_cancel" class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">Cancel</a>
                             </div>
                             <!--end::Form group-->
                         </form>
